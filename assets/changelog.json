@@ -1,4 +1,18 @@
 {
+  "3.5.4": {
+    "en": [
+      "Desktop: The clock, search box, corner buttons and Dock now switch to dark text on light wallpapers so they stay readable",
+      "Settings: Added a Desktop Text Color option (Auto / Light / Dark) under Appearance → Theme"
+    ],
+    "zh_CN": [
+      "桌面：浅色壁纸下，时钟、搜索框、四角按钮和 Dock 会自动切换为深色文字，保持清晰可读",
+      "设置：在 外观 → 主题 中新增「桌面文字颜色」选项（自动 / 浅色 / 深色）"
+    ],
+    "zh_TW": [
+      "桌面：淺色桌布下，時鐘、搜尋框、四角按鈕和 Dock 會自動切換為深色文字，保持清晰可讀",
+      "設定：在 外觀 → 主題 中新增「桌面文字顏色」選項（自動 / 淺色 / 深色）"
+    ]
+  },
   "3.5.3": {
     "en": [
       "Dock: You can now place Quick Links at the top or bottom of the page",
