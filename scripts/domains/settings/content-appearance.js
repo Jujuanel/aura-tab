@@ -87,6 +87,23 @@ export function registerAppearanceContent(window) {
                             </label>
                         </div>
                     </div>
+                    <div class="mac-settings-row">
+                        <div class="mac-settings-row-label">
+                            <span class="mac-settings-row-title" data-i18n="macSettingsUiInk"></span>
+                        </div>
+                        <div class="mac-settings-row-control">
+                            <div class="mac-select">
+                                <select class="mac-select-input" id="macUiInkMode">
+                                    <option value="auto" data-i18n="macSettingsUiInkAuto"></option>
+                                    <option value="light" data-i18n="macSettingsUiInkLight"></option>
+                                    <option value="dark" data-i18n="macSettingsUiInkDark"></option>
+                                </select>
+                                <span class="mac-select-arrow">
+                                    <svg viewBox="0 0 12 12"><path d="M3 5l3 3 3-3" stroke="currentColor" fill="none" stroke-width="1.5"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -302,6 +319,13 @@ function _bindAppearanceEvents(container) {
     themeToggle.addEventListener("change", async (e) => {
       const isDark = e.target.checked;
       await patchSyncSettings({ uiTheme: isDark ? "dark" : "light" });
+    });
+  }
+
+  const uiInkSelect = container.querySelector("#macUiInkMode");
+  if (uiInkSelect) {
+    uiInkSelect.addEventListener("change", async (e) => {
+      await patchSyncSettings({ uiInkMode: e.target.value });
     });
   }
 
@@ -668,13 +692,17 @@ async function _loadAppearanceSettings(container) {
   try {
     const {
       uiTheme = SYNC_SETTINGS_DEFAULTS.uiTheme,
+      uiInkMode = SYNC_SETTINGS_DEFAULTS.uiInkMode,
       backgroundSettings = BACKGROUND_APPEARANCE_DEFAULTS,
     } = await getSyncSettings({
       uiTheme: undefined,
+      uiInkMode: undefined,
       backgroundSettings: undefined,
     });
     const themeToggle = container.querySelector("#macThemeDark");
     if (themeToggle) themeToggle.checked = uiTheme === "dark";
+    const uiInkSelect = container.querySelector("#macUiInkMode");
+    if (uiInkSelect) uiInkSelect.value = uiInkMode;
 
     const bgSourceSelect = container.querySelector("#macBgSource");
     const currentSource =

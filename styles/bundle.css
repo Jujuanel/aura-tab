@@ -7600,3 +7600,93 @@ body:has(.launchpad-overlay.active.paused) .quicklink-dialog-overlay.active {
         flex: 1 1 0;
     }
 }
+
+/* ==========================================================================
+   Wallpaper-adaptive ink (scripts/domains/backgrounds/ui-ink.js)
+   Zones whose wallpaper is too bright for white UI get dark text on
+   frosted-white glass. Composite tokens (--spotlight-*, --dock-glass-*, …)
+   resolve on :root, so they are redefined here directly, not via tiers.
+   ========================================================================== */
+html[data-ink-tl="dark"] #cornerTopLeft,
+html[data-ink-tr="dark"] #cornerTopRight,
+html[data-ink-bl="dark"] #cornerBottomLeft,
+html[data-ink-br="dark"] #cornerBottomRight,
+html[data-ink-clock="dark"] #clock,
+html[data-ink-date="dark"] #date,
+html[data-ink-search="dark"] #searchContainer,
+html[data-ink-dock="dark"] #quicklinksContainer {
+    --text-primary: rgb(28 28 30 / 0.92);
+    --text-secondary: rgb(28 28 30 / 0.7);
+    --text-tertiary: rgb(28 28 30 / 0.54);
+    --text-quaternary: rgb(28 28 30 / 0.38);
+
+    --surface-glass: rgb(255 255 255 / 0.32);
+    --surface-glass-hover: rgb(0 0 0 / 0.06);
+    --overlay-highlight: rgb(255 255 255 / 0.5);
+    --overlay-medium: rgb(255 255 255 / 0.62);
+    --border-default: rgb(0 0 0 / 0.08);
+
+    --glass-tier-1-bg: rgb(255 255 255 / 0.72);
+    --glass-tier-1-border: rgb(0 0 0 / 0.08);
+
+    --glass-tier-2-bg: rgb(255 255 255 / 0.42);
+    --glass-tier-2-bg-hover: rgb(255 255 255 / 0.56);
+    --glass-tier-2-bg-active: rgb(255 255 255 / 0.66);
+    --glass-tier-2-border: rgb(0 0 0 / 0.08);
+    --glass-tier-2-border-hover: rgb(0 0 0 / 0.12);
+
+    --dock-glass-bg: rgb(255 255 255 / 0.36);
+    --dock-glass-border: rgb(0 0 0 / 0.08);
+
+    --spotlight-glass-bg: rgb(255 255 255 / 0.42);
+    --spotlight-glass-bg-hover: rgb(255 255 255 / 0.52);
+    --spotlight-glass-bg-focus: rgb(255 255 255 / 0.62);
+    --spotlight-glass-border: rgb(0 0 0 / 0.08);
+    --spotlight-glass-border-hover: rgb(0 0 0 / 0.1);
+    --spotlight-glass-border-focus: rgb(0 0 0 / 0.14);
+    --spotlight-glow-color: rgb(255 255 255 / 0.4);
+
+    --shadow-glass-inset:
+        inset 0 1px 0 rgb(255 255 255 / 0.6),
+        inset 0 -0.5px 0 rgb(0 0 0 / 0.04);
+}
+
+html[data-ink-clock="dark"] .clock {
+    text-shadow:
+        0 1px 1px rgb(255 255 255 / 0.4),
+        0 2px 12px rgb(255 255 255 / 0.3);
+}
+
+html[data-ink-date="dark"] .date {
+    opacity: 0.72;
+    text-shadow: 0 1px 6px rgb(255 255 255 / 0.4);
+}
+
+html[data-ink-search="dark"] .search-container .search-input,
+html[data-ink-search="dark"] .search-container.focused .search-input {
+    color: var(--text-primary);
+    caret-color: var(--text-secondary);
+}
+
+html[data-ink-search="dark"] .search-container .search-input::placeholder,
+html[data-ink-search="dark"] .search-container:hover .search-input::placeholder,
+html[data-ink-search="dark"] .search-container.focused .search-input::placeholder {
+    color: var(--text-quaternary);
+}
+
+html[data-ink-dock="dark"] .dock-separator {
+    background: linear-gradient(180deg,
+            transparent 0%,
+            rgb(0 0 0 / 0.1) 15%,
+            rgb(0 0 0 / 0.18) 50%,
+            rgb(0 0 0 / 0.1) 85%,
+            transparent 100%);
+}
+
+html[data-ink-dock="dark"] .quicklinks-add-btn {
+    border-color: rgb(0 0 0 / 0.22);
+}
+
+html[data-ink-dock="dark"] .quicklink-title::before {
+    background: linear-gradient(90deg, transparent 0%, rgb(255 255 255 / 0.8) 50%, transparent 100%);
+}

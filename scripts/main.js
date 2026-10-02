@@ -8,6 +8,7 @@ import { initMacSettings } from './domains/settings/window.js';
 import { libraryStore } from './domains/backgrounds/library-store.js';
 import { initChangelog } from './domains/changelog/index.js';
 import { getSyncSettings } from './platform/settings-contract.js';
+import { initUiInk } from './domains/backgrounds/ui-ink.js';
 
 const FIRST_PAINT_API_KEY = '__AURA_FIRST_PAINT__';
 const FIRST_PAINT_DISARM_TIMEOUT_MS = 3000;
@@ -71,6 +72,8 @@ async function main() {
     await initTheme();
     initHtmlI18n();
     void initChangelog();
+    // Must subscribe before the background system emits its first `background:applied`.
+    void initUiInk();
     void initBackgroundSystem().catch((error) => {
         console.error('[Aura Tab] background init failed:', error);
         disarmFirstPaint();

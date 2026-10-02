@@ -44,6 +44,7 @@ export const SYNC_SETTINGS_DEFAULTS = Object.freeze({
     [SHORTCUT_SETTING_KEYS.openLaunchpad]: SHORTCUT_DEFAULTS[SHORTCUT_SETTING_KEYS.openLaunchpad],
     macSettingsDismissOnOutsideClick: false,
     uiTheme: 'light',
+    uiInkMode: 'auto',
     interfaceLanguage: 'auto',
     backgroundSettings: Object.freeze(createBackgroundSettingsDefaults())
 });

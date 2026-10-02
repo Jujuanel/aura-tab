@@ -55,6 +55,7 @@ describe('settings-contract', () => {
             'shortcuts.openLaunchpad': SYNC_SETTINGS_DEFAULTS['shortcuts.openLaunchpad'],
             macSettingsDismissOnOutsideClick: SYNC_SETTINGS_DEFAULTS.macSettingsDismissOnOutsideClick,
             uiTheme: SYNC_SETTINGS_DEFAULTS.uiTheme,
+            uiInkMode: SYNC_SETTINGS_DEFAULTS.uiInkMode,
             interfaceLanguage: SYNC_SETTINGS_DEFAULTS.interfaceLanguage,
             backgroundSettings: createBackgroundSettingsDefaults()
         });

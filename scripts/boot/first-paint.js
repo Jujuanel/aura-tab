@@ -252,6 +252,28 @@
         return writeStoredSnapshot(snapshot);
     }
 
+    // Restore the last wallpaper-adaptive ink (see domains/backgrounds/ui-ink.js)
+    // so light-wallpaper UI doesn't flash white before the wallpaper is sampled.
+    const INK_STORAGE_KEY = 'aura:uiInk';
+    const INK_ZONE_PATTERN = /^[a-z]{1,8}$/;
+
+    function restoreInk() {
+        try {
+            if (typeof localStorage === 'undefined' || typeof document === 'undefined') return;
+            const inks = JSON.parse(localStorage.getItem(INK_STORAGE_KEY) || 'null');
+            if (!inks || typeof inks !== 'object') return;
+            const root = document.documentElement;
+            for (const zone of Object.keys(inks)) {
+                const ink = inks[zone];
+                if (INK_ZONE_PATTERN.test(zone) && (ink === 'dark' || ink === 'light')) {
+                    root.setAttribute(`data-ink-${zone}`, ink);
+                }
+            }
+        } catch {
+            /* ignore */
+        }
+    }
+
     const api = {
         STORAGE_KEY,
         SNAPSHOT_STORAGE_KEY,
@@ -266,5 +288,6 @@
     };
 
     global[API_KEY] = api;
+    restoreInk();
     api.armFirstPaint();
 })(globalThis);
