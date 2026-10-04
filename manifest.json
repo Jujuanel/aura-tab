@@ -11,7 +11,8 @@
     "search",
     "favicon",
     "bookmarks",
-    "offscreen"
+    "offscreen",
+    "tabs"
   ],
   "host_permissions": [
     "https://*/*",

@@ -1,5 +1,6 @@
 import { createBackgroundSettingsDefaults } from './scripts/platform/settings-contract.js';
 import { resolveEffectiveFrequency } from './scripts/domains/backgrounds/refresh-policy.js';
+import { registerTabbitNewTab } from './scripts/platform/tabbit-newtab.js';
 
 const ALARM_NAME = 'refreshBackground';
 const FETCH_ICON_MESSAGE = 'fetchIcon';
@@ -14,6 +15,9 @@ const FETCH_TIMEOUT_MS = 3000;
 const MAX_PRIMARY_CANDIDATES = 12;
 let autoRefreshSyncChain = Promise.resolve();
 let faviconOffscreenPromise = null;
+
+// Must run at top level so listeners exist every time the worker wakes up.
+registerTabbitNewTab();
 
 chrome.runtime.onInstalled.addListener(async (details) => {
     try {
